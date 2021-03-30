@@ -1,0 +1,6 @@
+---
+# tasks file for roles/BackupSudoers_Role
+
+- name: backup sudoers file
+  script: files/backupsudoers.sh
+  tags: backup_sudoers_file

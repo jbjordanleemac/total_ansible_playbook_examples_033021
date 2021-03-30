@@ -1,0 +1,9 @@
+---
+# tasks file for roles/Firewalld_Role
+
+- name: check firewalld status
+  shell: systemctl status firewalld
+  register: status
+
+- debug: 
+    msg: "{{ status.stdout_lines }}"

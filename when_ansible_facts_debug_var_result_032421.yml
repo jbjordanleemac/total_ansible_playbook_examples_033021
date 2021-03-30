@@ -1,0 +1,14 @@
+- hosts: "{{ nodes }}"
+  remote_user: itadmin
+  become: yes
+  connection: paramiko
+  vars_files:
+    - v1.yml
+  tasks:
+    - name: Find out sshd status
+      shell: systemctl status sshd
+      when: (ansible_facts['hostname'] == "g2")
+      register: result
+    
+    - debug:
+        var: result

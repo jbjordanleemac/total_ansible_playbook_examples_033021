@@ -1,0 +1,4 @@
+---
+# tasks file for roles/Firewalld_Role
+
+- import_tasks: firewalld_status_check.yml

@@ -1,0 +1,14 @@
+- hosts: "{{ nodes }}"
+  remote_user: itadmin
+  become: yes
+  connection: paramiko
+  vars_files: 
+    - v1.yml
+  tasks:
+    - name: print out hostname if matching os family
+      shell: hostname
+      when: ansible_facts['os_family'] == "RedHat"
+      register: result
+
+    - debug:
+        msg: "{{ result.stdout_lines }}"

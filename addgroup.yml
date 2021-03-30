@@ -1,0 +1,20 @@
+- hosts: "{{ nodes }}"
+  remote_user: itadmin
+  become: yes
+  connection: paramiko
+  vars_files:
+    - v1.yml
+  tasks:
+    - name: add group test1
+      group: 
+        name: test1
+        state: present
+        gid: 1101
+      tags: add_group_test1
+
+    - name: add group test2
+      group: 
+        name: test2
+        state: present
+        gid: 1102
+      tags: add_group_test2

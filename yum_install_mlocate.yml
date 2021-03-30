@@ -1,0 +1,19 @@
+- hosts: "{{ nodes }}"
+  remote_user: itadmin
+  become: yes
+  connection: paramiko
+  vars_files:
+    - v1.yml
+  tasks:
+    - name: yum install mlocate
+      yum:
+        name: mlocate
+        state: latest
+      tags: yum_install_mlocate
+
+    - name: which locate print result
+      shell: which locate
+      register: result
+
+    - debug:
+        msg: "{{ result.stdout_lines }}"

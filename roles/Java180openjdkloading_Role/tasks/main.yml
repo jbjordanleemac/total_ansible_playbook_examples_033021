@@ -1,0 +1,4 @@
+---
+# tasks file for roles/Java180openjdkloading_Role
+
+- import_tasks: java180openjdkloading.yml

@@ -1,0 +1,14 @@
+- hosts: "{{ nodes }}"
+  remote_user: itadmin
+  become: yes
+  connection: paramiko
+  vars_files:
+    - v1.yml
+  tasks:
+    - name: insert item3 after item 2
+      lineinfile:
+        path: /opt/file_backup_dir/test031921
+        state: present
+        insertafter: '^item2'
+        line: 'item3'
+      tags: insert_item3_after_item2

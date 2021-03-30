@@ -1,0 +1,17 @@
+- hosts: "{{ nodes }}"
+  remote_user: itadmin
+  become: yes
+  connection: paramiko
+  vars_files:
+    - v1.yml
+  tasks:
+    - name: add dirs into tmp list file
+      shell: echo "/opt" > /tmp/list; echo "/usr" >> /tmp/list; echo "/var" >> /tmp/list ; echo "/etc" >> /tmp/list
+      tags: add_dirs_into_tmp_list_file
+  
+    - name: find out the total disk usage for each dir 
+      shell: for a in `cat /tmp/list`; do du -sm . $a; done
+      register: result
+
+    - debug: 
+        msg: "{{ result.stdout_lines }}"

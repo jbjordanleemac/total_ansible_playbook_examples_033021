@@ -1,0 +1,4 @@
+---
+# tasks file for roles/Sshd_Role
+
+- import_tasks: sshd_status_check.yml

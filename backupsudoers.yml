@@ -1,0 +1,8 @@
+- hosts: "{{ nodes }}"
+  remote_user: itadmin
+  become: yes
+  connection: paramiko
+  vars_files:
+    - v1.yml
+  roles:
+    - BackupSudoers_Role

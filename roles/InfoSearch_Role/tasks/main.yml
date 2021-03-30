@@ -1,0 +1,4 @@
+---
+# tasks file for roles/InfoSearch_Role
+
+- import_tasks: info_search.yml

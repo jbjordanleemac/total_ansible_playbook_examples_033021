@@ -1,0 +1,15 @@
+- hosts: "{{ nodes }}"
+  remote_user: itadmin
+  become: yes
+  connection: paramiko
+  vars_files:
+    - v1.yml
+  tasks:
+    - name: Find out hostname which with python 2.7.5 version 
+      shell: hostname
+      when: (ansible_facts['python_version'] == "2.7.5")
+      register: result
+    
+    - debug:
+        msg: "{{ result.stdout_lines }}"
+#        var: result

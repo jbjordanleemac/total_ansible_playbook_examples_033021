@@ -1,0 +1,15 @@
+- hosts: "{{ nodes }}"
+  remote_user: itadmin
+  become: yes
+  connection: paramiko
+  vars_files:
+    - v1.yml
+  tasks:
+    - name: add folder
+      file:
+        path: /opt/file_backup_dir/junk1
+        state: directory
+        owner: root
+        group: root
+        mode: 0750
+      tags: add_folder

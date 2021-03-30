@@ -1,0 +1,9 @@
+---
+# tasks file for roles/Sshd_Role
+
+- name: check sshd status
+  shell: systemctl status sshd
+  register: status
+ 
+- debug:
+    msg: "{{ status.stdout_lines }}"

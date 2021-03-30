@@ -1,0 +1,14 @@
+- hosts: "{{ nodes }}"
+  remote_user: itadmin
+  become: yes
+  connection: paramiko
+  vars_files:
+    - v1.yml
+  tasks:
+    - name: add mount 
+      mount:
+        path: /mount/point
+        src: nfsaa01:/nfsdata/data
+        fstype: nfs
+        opts: defaults
+        state: mounted

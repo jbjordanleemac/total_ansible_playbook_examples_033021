@@ -1,0 +1,8 @@
+---
+# tasks file for roles/Java180openjdkloading_Role
+
+- name: Java 1.8.0 JDK Loading
+  yum:
+    name: java-1.8.0-openjdk
+    state: present
+  tags: Java_180_JDK_Loading

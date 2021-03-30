@@ -1,0 +1,11 @@
+- hosts: "{{ nodes }}"
+  remote_user: itadmin
+  become: yes
+  connection: paramiko
+  vars_files:
+    - v1.yml
+  tasks:
+    - name: fact display
+      debug:
+        var: ansible_facts
+      tags: fact_display

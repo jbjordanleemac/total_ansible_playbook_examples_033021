@@ -1,0 +1,9 @@
+---
+# tasks file for roles/InfoSearch_Role
+
+- name: info search
+  shell: "{{ cmd }}"
+  register: status
+
+- debug: 
+    msg: "{{ status.stdout_lines }}"

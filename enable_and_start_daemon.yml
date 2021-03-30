@@ -1,0 +1,13 @@
+- hosts: "{{ nodes }}"
+  remote_user: itadmin
+  become: yes
+  connection: paramiko
+  vars_files:
+    - v1.yml
+  tasks:
+    - name: enable and start iptables daemon
+      systemd:
+        name: iptables
+        state: started
+        enabled: yes
+      tags: enable_and_start_iptables_daemon

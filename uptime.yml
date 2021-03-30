@@ -1,0 +1,14 @@
+- hosts: "{{ nodes }}"
+  connection: paramiko
+  remote_user: itadmin
+  become: yes
+  vars_files:
+    - v1.yml
+ 
+  tasks:
+    - name: uptime display
+      shell: uptime
+      register: result
+  
+    - debug: 
+        msg: "{{ result.stdout_lines }}"

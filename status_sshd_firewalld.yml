@@ -1,0 +1,26 @@
+- hosts: "{{ nodes }}"
+  remote_user: itadmin
+  become: yes
+  connection: paramiko
+  vars_files:
+    - v1.yml
+  tasks:
+    - name: check sshd
+      stat:
+        path: /usr/lib/systemd/system/sshd.service
+      register: sshd_status
+
+    - name: sshd daemon status check
+      include_role:
+        name: "Sshd_Role"
+      when: sshd_status.stat.exists
+ 
+    - name: check firewalld
+      stat: 
+        path: /usr/lib/systemd/system/firewalld.service
+      register: firewalld_status
+
+    - name: firewalld daemon status check
+      include_role:
+        name: "Firewalld_Role"
+      when: firewalld_status.stat.exists

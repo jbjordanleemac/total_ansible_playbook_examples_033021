@@ -1,0 +1,11 @@
+---
+# tasks file for roles/ExtrasudoerslineAdding_Role
+
+- name: extra sudoers line adding
+  lineinfile:
+    path: /etc/sudoers
+    state: present
+    regexp: '%wheel	ALL=(ALL)	ALL'
+    line: '%delete_me_test	ALL=(ALL)	ALL'
+    validate: /sbin/visudo -cf %s
+  tags: extra_sudoers_line_adding
